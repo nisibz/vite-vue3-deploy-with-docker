@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+ web:
+    build: .
+    container_name: vite-vue3
+    ports:
+      - 5050:80
+    restart: unless-stopped
+    labels:
+      - traefik.http.routers.web.rule=Host(`your_domain`) # replace with your domain name
+      - traefik.http.routers.web.entrypoints=web
+      - traefik.http.routers.web.middlewares=redirect-to-https
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.web-secure.entrypoints=websecure
+      - traefik.http.routers.web-secure.rule=Host(`your_domain`) # replace with your domain name
+      - traefik.http.routers.web-secure.tls.certresolver=myresolver
+      - traefik.http.services.web.loadbalancer.server.port=80
+    networks:
+      - traefik-net
+
+networks:
+  traefik-net:
+    external: true
