@@ -1,41 +1,32 @@
 # vite-vue3
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository contains a Docker Compose configuration for deploying a Vite Vue3 application using Traefik as a reverse proxy with automatic HTTPS configuration. The setup allows you to quickly deploy your Vite Vue3 application with proper routing and secure HTTPS access.
+## Before You Begin
 
-## Recommended IDE Setup
+If you don't have a Traefik network set up, you can follow the instructions in [this repository](https://github.com/nisibz/setup-traefik-with-docker.git) to create the necessary network configuration.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Prerequisites
 
-## Customize configuration
+Before using this Docker Compose setup, make sure you have the following:
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Docker installed on your machine or server.
+- A registered domain name for which you can configure DNS records.
 
-## Project Setup
+## Usage
 
-```sh
-npm install
-```
+1. Clone this repository to your local machine:
 
-### Compile and Hot-Reload for Development
+   ```bash
+   git clone https://github.com/nisibz/vite-vue3-deploy-with-docker.git
+   cd vite-vue3-deploy-with-docker
+   ```
 
-```sh
-npm run dev
-```
+2. Update the `docker-compose.yml` file with your specific configurations:
 
-### Compile and Minify for Production
+   - Replace `your_domain` with your actual domain name in the `labels` section for both web and web-secure services.
 
-```sh
-npm run build
-```
+3. Build and start the services using Docker Compose:
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+   ```bash
+   docker-compose up -d
+   ```
